@@ -6,13 +6,23 @@ type Memory struct {
 	list.List
 }
 
-func (m *Memory) Put(value interface{}) {
-	m.PushBack(value)
+func (m *Memory) Put(item interface{}) {
+	m.PushBack(item)
 }
 
-func (m *Memory) Get() (value interface{}, tx Txid) {
-	return m.Front().Value, -1
+func (m *Memory) Get() *Task {
+	var tx Txid
+	item := m.Front()
+	if item == nil {
+		return nil
+	}
+	return &Task{
+		Item:  m.Remove(item),
+		tx:    tx,
+		queue: m,
+	}
 }
 
-func (m *Memory) Commit(tx Txid) {
+func (m *Memory) Commit(tx Txid) error {
+	return nil
 }
