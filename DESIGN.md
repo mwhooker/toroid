@@ -9,7 +9,7 @@ Another slight difference is we want a build pipeline. Whereas Travis is good fo
 
 Putting it all together we have what I consider to be an incredibly simple system.
 
-Here's a workflow.
+## Here's a workflow.
 
 ### Library build
 A library produces an artifact and nothing else.
@@ -33,10 +33,11 @@ An application build implies a pipeline.
 Same as above except the artifact is an ami. At the end it puts a new message on the queue saying to run the build for the next environment. The environment is arbitrary. Let's say its stage. The build would for example involve creating a new cloud formation stack with the previously created AMI for the stage environment. Upon a successful deploy
 
 **build**
+
 The build scripts can be implemented in any way, but the interface must be consistent. There must be an entry point for each supported environment (could be parametrized). There must also be syntax for populating the build queue.
 
 
-
+## summary 
 This is a nice basic system. A secondary goal would be adding some small amount if state and a web ui. That way we could inspect builds like in Travis or pause certain environments.
 
 The work for this is underway already. Since I believe v1 will have a small footprint, I believe building it first and iterating is the right move.
